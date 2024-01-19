@@ -1,3 +1,3 @@
 # Learning-Python
 
-Week by week updates of the python learning journey
+Weekly updates of the python learning journey

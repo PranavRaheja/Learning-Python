@@ -47,7 +47,7 @@ pin_to_state()
 
 
 
-#code process
+#trying to figure stuff out
 #def disp_coord():
 
    

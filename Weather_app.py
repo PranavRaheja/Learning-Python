@@ -1,5 +1,5 @@
 import requests
-import os
+import pandas as pd
 import  json
 print("\n")
 def pin_to_state():
@@ -14,8 +14,7 @@ def pin_to_state():
     def s_toweather():
         key = "c2e6251262d842f78d9151941242601"
         base_url = "http://api.weatherapi.com/v1"
-        compl_url = base_url +"/current.json?key="+key+"&q="+divis
-        #print(compl_url)
+        compl_url = base_url +"/current.json?key="+key+"&q="+divis               
         gets = ((requests.get(compl_url)))
         gets_stored = json.loads(gets.text)  
         temp_c = gets_stored['current']['temp_c']
@@ -26,9 +25,32 @@ def pin_to_state():
         print(f"Your coordinates are {lati} {longi}")
         #print("temp is as follows:\n In celsius",gets_stored[260:265],"\n In Fahrenheit :",gets_stored[275:279])
         
+        #Load existing data from excel file if it exists
+        excel_file_path = 'weather_data.xlsx'
+        try:
+            existing_data = pd.read_excel(excel_file_path)
+        except(FileNotFoundError):
+            existing_data = pd.DataFrame()
+            
+        new_data = {
+            'Pincode':[pincode],
+            'City':[divis],
+            'Temp(c)':[temp_c],
+            'Temp(f)':[temp_f],
+            'Latitude':[lati],
+            'Longitude':[longi]
+            
+            
+        }
+        comb_data = pd.concat([existing_data,pd.DataFrame(new_data)],ignore_index=True)
+        
+        #save combined to excel
+        comb_data.to_excel(excel_file_path,index=False)
+        
+        print(f"Data has been stored in the excel file : {excel_file_path}")
+              
     s_toweather()
     
-
 pin_to_state()
 
 

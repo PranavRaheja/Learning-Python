@@ -12,7 +12,7 @@ def pin_to_state():
     print("Your city is",divis)
     
     def s_toweather():
-        key = "c2e6251262d842f78d9151941242601"
+        key = "key"
         base_url = "http://api.weatherapi.com/v1"
         compl_url = base_url +"/current.json?key="+key+"&q="+divis               
         gets = ((requests.get(compl_url)))

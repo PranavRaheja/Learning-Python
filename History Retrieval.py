@@ -4,7 +4,7 @@ import time
 
 try:
     # Connect to the SQLite database
-    conn = sqlite3.connect('C:\\Users\\iampr\\Desktop\\history python\\hist_chrome')
+    conn = sqlite3.connect('your history file path')
     
     # if connected
     print("Connection to SQLite database successful!")
@@ -34,7 +34,7 @@ def get_table_names(conn):
         data = cur.fetchall() 
         col_name = [desc[0]for desc in cur.description]
         df = pd.DataFrame(data, columns=col_name)
-        df.to_csv(f'C:\\Users\\iampr\\Desktop\\python project\\CSV FILES\\{table}.csv',index=False)
+        df.to_csv(f'path of folder{table}.csv',index=False)
     time.sleep(2)
     print("\033[32;5mCreated :)\033[0m")
 
